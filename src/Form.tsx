@@ -11,7 +11,11 @@ interface IForm {
 }
 
 function Form() {
-  const { register, handleSubmit } = useForm<IForm>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IForm>({
     defaultValues: { email: "@naver.com" },
   });
   const onValid = (data: IForm) => {};
@@ -30,6 +34,7 @@ function Form() {
         })}
         placeholder="Email"
       />
+      <span>{errors?.email?.message}</span>
       <input
         {...register("firstName", {
           required: "write here",
@@ -42,18 +47,22 @@ function Form() {
         })}
         placeholder="First Name"
       />
+      <span>{errors?.firstName?.message}</span>
       <input
         {...register("lastName", { required: "write here" })}
         placeholder="Last Name"
       />
+      <span>{errors?.lastName?.message}</span>
       <input
         {...register("username", { required: "write here", minLength: 10 })}
         placeholder="Username"
       />
+      <span>{errors?.username?.message}</span>
       <input
         {...register("password", { required: "write here", minLength: 5 })}
         placeholder="Password"
       />
+      <span>{errors?.password?.message}</span>
       <input
         {...register("password1", {
           required: "Password is required",
@@ -61,6 +70,7 @@ function Form() {
         })}
         placeholder="Password1"
       />
+      <span>{errors?.password1?.message}</span>
       <button>Add</button>
     </form>
   );
