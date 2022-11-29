@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import Form from "./Form";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -22,6 +23,11 @@ a { text-decoration:none; color:inherit; }
 `;
 
 function App() {
-  return <GlobalStyle />;
+  return (
+    <>
+      <GlobalStyle />
+      <Form />
+    </>
+  );
 }
 export default App;
