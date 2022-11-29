@@ -15,10 +15,20 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IForm>({
-    defaultValues: { email: "@naver.com" },
-  });
-  const onValid = (data: IForm) => {};
+    setError,
+    setValue,
+  } = useForm<IForm>({ defaultValues: { email: "@naver.com" } });
+  const onValid = (data: IForm) => {
+    if (data.password !== data.password1) {
+      setError(
+        "password1",
+        { message: "Password are not the same" },
+        { shouldFocus: true }
+      );
+    }
+    setValue("password", "");
+    setValue("password1", "");
+  };
   return (
     <form
       style={{ display: "flex", flexDirection: "column", width: 300 }}
