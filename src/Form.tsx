@@ -11,9 +11,13 @@ interface IForm {
 }
 
 function Form() {
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm<IForm>();
+  const onValid = (data: IForm) => {};
   return (
-    <form>
+    <form
+      style={{ display: "flex", flexDirection: "column", width: 300 }}
+      onSubmit={handleSubmit(onValid)}
+    >
       <input {...register("email")} placeholder="Email" />
       <input {...register("firstName")} placeholder="First Name" />
       <input {...register("lastName")} placeholder="Last Name" />
